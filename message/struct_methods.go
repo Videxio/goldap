@@ -77,6 +77,11 @@ func (b *BindRequest) AuthenticationSimple() OCTETSTRING {
 	return b.Authentication().(OCTETSTRING)
 }
 
+func (b *BindRequest) AuthenticationSasl() (LDAPString, *OCTETSTRING) {
+	sasl := b.Authentication().(SaslCredentials)
+	return sasl.mechanism, sasl.credentials
+}
+
 func (b *BindRequest) AuthenticationChoice() string {
 	switch b.Authentication().(type) {
 	case OCTETSTRING:
@@ -335,6 +340,9 @@ func (l *SearchResultDone) SetResultCode(code int) {
 
 func (l *LDAPResult) SetResultCode(code int) {
 	l.resultCode = ENUMERATED(code)
+}
+func (l *BindResponse) SetSaslData(data *OCTETSTRING) {
+	l.serverSaslCreds = data
 }
 
 func (l *LDAPResult) SeMatchedDN(code string) {
