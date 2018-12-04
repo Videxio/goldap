@@ -47,6 +47,10 @@ func (l *LDAPMessage) SetMessageID(ID int) {
 	l.messageID = MessageID(ID)
 }
 
+func (l *LDAPMessage) SetControls(c *Controls) {
+	l.controls = c
+}
+
 func (l *LDAPMessage) Controls() *Controls {
 	return l.controls
 }
@@ -349,6 +353,10 @@ func (l *LDAPResult) SeMatchedDN(code string) {
 	l.matchedDN = LDAPDN(code)
 }
 
+func (l *SearchResultDone) SetMatchedDN(code string) {
+	l.matchedDN = LDAPDN(code)
+}
+
 func (l *LDAPResult) SetDiagnosticMessage(code string) {
 	l.diagnosticMessage = LDAPString(code)
 }
@@ -374,6 +382,10 @@ func (s *SearchResultEntry) SetObjectName(on string) {
 func (s *SearchResultEntry) AddAttribute(name AttributeDescription, values ...AttributeValue) {
 	var ea = PartialAttribute{type_: name, vals: values}
 	s.attributes.add(ea)
+}
+
+func (s SearchResultEntry) Attributes() PartialAttributeList {
+	return s.attributes
 }
 
 func (p *PartialAttributeList) add(a PartialAttribute) {
