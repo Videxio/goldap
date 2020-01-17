@@ -2,7 +2,10 @@
 [![Build Status](https://travis-ci.org/lor00x/goldap.svg)](https://travis-ci.org/lor00x/goldap)
 [![Coverage Status](https://coveralls.io/repos/lor00x/goldap/badge.png?branch=master)](https://coveralls.io/r/lor00x/goldap?branch=master)
 
-# LDAP library in Golang
+# [DEPRECATED]
+This project has deprecated and is no longer in used. It has been replaced by new non-GPL package.
+
+## LDAP library in Golang
 
 This library performs decoding and encoding of LDAP message.
 It still requires a lot of testing.
